@@ -1,0 +1,122 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "name": "swagger2",
+      "type": "com.gizwits.swagger2.ApiInfoProperties"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "name": "swagger2.contact",
+      "sourceMethod": "getContact()",
+      "type": "com.gizwits.swagger2.ApiInfoProperties$Contact"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "name": "swagger2.base-path",
+      "description": "swagger会解析的url规则",
+      "type": "java.util.List<java.lang.String>"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "defaultValue": "",
+      "name": "swagger2.basepackage",
+      "description": "swagger会解析的包路径",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties$Contact",
+      "defaultValue": "",
+      "name": "swagger2.contact.email",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties$Contact",
+      "defaultValue": "",
+      "name": "swagger2.contact.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties$Contact",
+      "defaultValue": "",
+      "name": "swagger2.contact.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "defaultValue": "",
+      "name": "swagger2.description",
+      "description": "描述",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "name": "swagger2.enabled",
+      "description": "是否开启swagger",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "name": "swagger2.exclude-path",
+      "description": "在basePath基础上需要排除的url规则",
+      "type": "java.util.List<java.lang.String>"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "name": "swagger2.group-docket",
+      "description": "分组文档",
+      "type": "java.util.Map<java.lang.String,com.gizwits.swagger2.ApiInfoProperties.DocketInfo>"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "defaultValue": "",
+      "name": "swagger2.host",
+      "description": "host信息",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "name": "swagger2.keyname",
+      "description": "权限验证、消息头前置名称",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "defaultValue": "",
+      "name": "swagger2.license",
+      "description": "许可证",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "defaultValue": "",
+      "name": "swagger2.license-url",
+      "description": "许可证URL",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "defaultValue": "",
+      "name": "swagger2.terms-of-service-url",
+      "description": "服务条款URL",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "defaultValue": "",
+      "name": "swagger2.title",
+      "description": "标题",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.gizwits.swagger2.ApiInfoProperties",
+      "defaultValue": "",
+      "name": "swagger2.version",
+      "description": "版本",
+      "type": "java.lang.String"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+server.port=8089
+spring.application.name=test
+swagger2.title=swagger2测试
+swagger2.description=swagger2测试描述
+swagger2.contact.name=kevin chen
+swagger2.contact.url=www.kevin86.com
+swagger2.contact.email=chenkevin1986@126.com
+swagger2.exclude-path=/error, /ops/**
+swagger2.keyname=Authorization

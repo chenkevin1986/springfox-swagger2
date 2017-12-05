@@ -1,0 +1,38 @@
+server:
+  port: 8099
+spring:
+  application:
+    name: swagger2-example
+#分组文档配置
+swagger2:
+  group-docket:
+    enterprise:
+      title: enterprise-api
+      description: Example for enterprise-api
+      version: 2.7.0.RELEASE
+      license: Apache License, Version 2.0 #许可证
+      licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html #许可证URL
+      termsOfServiceUrl: https://github.com/chenkevin1986/springfox-swagger2 #服务条款URL
+      contact:
+        name: kevin chen #维护人
+        url: http://kevin86.com
+        email: chenkevin1986@126.com
+      base-package: com.gizwits #swagger扫描的基础包，默认：全扫描
+      base-path: /**   #需要处理的基础URL规则，默认：/**
+      exclude-path: /error, /ops/**  #需要排除的URL规则，默认：空
+      keyname: Authorization #权限验证使用，消息头前置名称
+    open:
+      title: open-api
+      description: Example for open-api
+      version: 2.7.0.RELEASE
+      license: Apache License, Version 2.0 #许可证
+      licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html #许可证URL
+      termsOfServiceUrl: https://github.com/chenkevin1986/springfox-swagger2 #服务条款URL
+      contact:
+        name: kevin chen #维护人
+        url: http://kevin86.com
+        email: chenkevin1986@126.com
+      base-package: com.gizwits #swagger扫描的基础包，默认：全扫描
+      base-path: /**   #需要处理的基础URL规则，默认：/**
+      exclude-path: /error, /ops/**  #需要排除的URL规则，默认：空
+      keyname: Authorization #权限验证使用，消息头前置名称

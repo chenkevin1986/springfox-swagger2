@@ -1,0 +1,4 @@
+rootProject.name = 'springfox-swagger2'
+include 'spring-boot-starter-swagger2'
+include 'spring-boot-swagger2-example'
+

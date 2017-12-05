@@ -1,0 +1,160 @@
+buildscript {
+  ext {
+    springBootVersion = "${springBootVersion}"
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.gizwits'
+version = '2.7.0'
+sourceCompatibility = "${sourceCompatibility}"
+
+repositories {
+  mavenCentral()
+}
+
+
+dependencies {
+  compile('org.projectlombok:lombok')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+allprojects {
+  apply plugin: "java"
+  apply plugin: "maven"
+  apply plugin: 'eclipse'
+  apply plugin: 'org.springframework.boot'
+
+  group = 'com.gizwits'
+  version = '2.7.0'
+
+  ext {
+    springBootVersion = "${springBootVersion}"
+  }
+
+  sourceCompatibility = "${sourceCompatibility}"
+  targetCompatibility = "${targetCompatibility}"
+  // java编译的时候缺省状态下会因为中文字符而失败
+  [compileJava,compileTestJava,javadoc]*.options*.encoding = "${fileEncoding}"
+
+  repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    jcenter()
+    mavenCentral()
+  }
+
+  dependencies {
+    compile('org.projectlombok:lombok')
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+  }
+
+}
+
+//所有子工程共有的配置
+subprojects {
+  apply plugin: "java"
+  apply plugin: 'idea'
+
+  //配置多个maven源
+  repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    jcenter()
+    mavenCentral()
+  }
+  dependencies {
+    compile('org.projectlombok:lombok')
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+  }
+}
+
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+def username = System.getProperty("username") ?: "admin"
+def password = System.getProperty("password") ?: "123456"
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      //为Pom文件做数字签名
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+      //指定项目部署到的中央库地址
+      repository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: $username, password: $password)
+      }
+      addFilter('spring-boot-starter-swagger2') {artifact, file ->
+        artifact.name == 'spring-boot-starter-swagger2'
+      }
+      pom('spring-boot-starter-swagger2').version = "$project.version"
+      pom('spring-boot-starter-swagger2').artifactId = "spring-boot-starter-swagger2"
+      pom('spring-boot-starter-swagger2').groupId = "$project.group"
+      pom('spring-boot-starter-swagger2').project pomCfg
+    }
+  }
+}
+
+//构造项目的Pom文件
+ext.pomCfg = {
+  name project.name
+  packaging 'jar'
+  description 'Simplifying the use of springfox-swagger2 on the spring boot framework'
+  url 'https://github.com/chenkevin1986/springfox-swagger2'
+
+  scm {
+    url 'scm:git@github.com:chenkevin1986/springfox-swagger2.git'
+    connection 'scm:git@github.com:chenkevin1986/springfox-swagger2.git'
+    developerConnection 'git@github.com:chenkevin1986/springfox-swagger2.git'
+  }
+
+  licenses {
+    license {
+      name 'The Apache Software License, Version 2.0'
+      url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+      distribution 'repo'
+    }
+  }
+
+  developers {
+    developer {
+      id 'Kevin Chen'
+      name 'Kevin Chen'
+      email 'gchen@gizwits.com'
+      organization 'Guangzhou Gizwits Iot Technology Co., Ltd.'
+    }
+  }
+
+}
+
+//项目生成**.jar/**-javadoc.jar/**-sources.jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives jar
+  archives javadocJar
+  archives sourcesJar
+}
+
+//为所有的jar包做数字签名
+signing {
+  sign configurations.archives
+}
+
